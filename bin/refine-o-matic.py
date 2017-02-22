@@ -278,8 +278,8 @@ class RefineBins:
 		print "######### Writing simple bin stats" 
 		self.write_stats(os.path.join(self.output_directory, 'stats.tsv'), stats_lines)
 		
-		if args.checkm:
-			self.run_checkm(args.threads)
+		#if args.checkm:
+		#	self.run_checkm(args.threads)
 		
 		self.cleanup()
 		print "######### refine-o-matic has finished. Beep-bop-boop.\n"
@@ -302,7 +302,7 @@ if __name__=="__main__":
 	parser.add_argument('--output_directory', help='output directory', required=True)
 	parser.add_argument('--threads', default='10', help='number of threads to use')
 	parser.add_argument('--force', help='overwrite previous run', action='store_true')
-	parser.add_argument('--checkm', help='run checkM on refined bins', action='store_true')
+	#parser.add_argument('--checkm', help='run checkM on refined bins', action='store_true')
 	parser.add_argument('--bam_filter', help='filter bam by percent id mapping', type = float)
 
 	args = parser.parse_args()
