@@ -202,7 +202,7 @@ class RefineBins:
 
 	def finishm(self, bin_contigs, bin_name, forward_reads, reverse_reads):
 		print "######### Running FinishM" 
-		finishm_output_directory = os.path.join(self.output_directory, 'finishM')
+		finishm_output_directory = os.path.join(self.output_directory, '%s.finishM' % bin_name)
 		velvet_output_directory = os.path.join(finishm_output_directory, "velvet")
 		cmd = 'finishm roundup --quiet --genomes %s --fastq %s,%s --output-directory %s --velvet-directory %s' \
 					% (bin_contigs, forward_reads, reverse_reads, finishm_output_directory, velvet_output_directory)
@@ -230,6 +230,7 @@ class RefineBins:
 				source = os.path.join(self.output_directory, file)
 				destination = os.path.join(self.proc_directory, file)
 				shutil.move(source, destination)
+
 	def run_checkm(self, threads):
 		print "######### Running checkM on bins"
 
@@ -293,7 +294,7 @@ if __name__=="__main__":
 			----------------------------------------
 			1) map reads to bins (BamM)
 			2) re-assemble mapped reads (Spades)
-			3) Gap filling and scaffolding (FinishM)'''))
+			3) gap filling and scaffolding (FinishM)'''))
 
 	parser.add_argument('--bins', nargs='+',  help='space separated list of bins to refine', required=True)
 	parser.add_argument('--forward', nargs='+', help='forward reads', required=True)
